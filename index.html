@@ -1,0 +1,79 @@
+
+HTML
+
+<!DOCTYPE html>
+<html lang="mg">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bet261 Predictor</title>
+<style>
+body{margin:0;background:#101827;color:white;font-family:Arial,sans-serif;padding:16px}
+header{background:#e50914;padding:18px;border-radius:12px;text-align:center}
+h1{font-size:24px;margin:0}
+.card{background:#202c40;padding:16px;border-radius:12px;margin-top:16px}
+input{width:65px;padding:12px;border:0;border-radius:8px;text-align:center;font-size:18px}
+button{background:#e50914;color:white;border:0;padding:12px;border-radius:8px;font-weight:bold;margin-top:12px}
+select{padding:10px;border-radius:8px;max-width:100%}
+.small{color:#b9c5d8;font-size:13px}
+</style>
+</head>
+<body>
+<header>
+<h1>⚽ BET261 PREDICTOR</h1>
+<p>Virtual World Cup</p>
+</header>
+
+<div class="card">
+<h2>🔮 Vinavina lalao</h2>
+<label>Ekipa 1</label><br>
+<input id="team1" value="France" style="width:85%"><br><br>
+<label>Ekipa 2</label><br>
+<input id="team2" value="Argentina" style="width:85%"><br><br>
+<label>Isa farany - Ekipa 1</label><br>
+<input id="score1" type="number" min="0" max="99" value="1"><br><br>
+<label>Isa farany - Ekipa 2</label><br>
+<input id="score2" type="number" min="0" max="99" value="2"><br>
+<button onclick="predict()">Kajio ny vinavina</button>
+<div id="result"></div>
+</div>
+
+<div class="card">
+<h2>📊 Vokatra voarakitra</h2>
+<p id="matches">Tsy mbola misy vokatra voatahiry.</p>
+<button onclick="saveResult()">Tehirizo ny vokatra</button>
+<p class="small">Voatahiry amin'ity navigateur ity ihany ny vokatra.</p>
+</div>
+
+<div class="card">
+<h3>ℹ️ Fanamarihana</h3>
+<p class="small">Vinavina tsotra mifototra amin'ny isa nampidirina ihany ity. Tsy antoka ny vokatra, ary mbola tsy mifandray mivantana amin'ny Bet261.</p>
+</div>
+
+<script>
+function predict(){
+let a=Number(document.getElementById('score1').value);
+let b=Number(document.getElementById('score2').value);
+let t1=document.getElementById('team1').value;
+let t2=document.getElementById('team2').value;
+let r=a>b?t1+" no nandresy tamin'ny lalao farany":
+a<b?t2+" no nandresy tamin'ny lalao farany":"Nifandanja ny isa";
+document.getElementById('result').innerHTML=
+"<h3>Vokatra farany: "+a+" - "+b+"</h3><p>"+r+"</p>";
+}
+function saveResult(){
+let t1=document.getElementById('team1').value;
+let t2=document.getElementById('team2').value;
+let a=document.getElementById('score1').value;
+let b=document.getElementById('score2').value;
+let old=localStorage.getItem('bet261results')||'';
+let entry=t1+" "+a+" - "+b+" "+t2;
+localStorage.setItem('bet261results',old?old+"<br>"+entry:entry);
+document.getElementById('matches').innerHTML=
+localStorage.getItem('bet261results');
+}
+document.getElementById('matches').innerHTML=
+localStorage.getItem('bet261results')||'Tsy mbola misy vokatra voatahiry.';
+</script>
+</body>
+</html>
